@@ -7,7 +7,12 @@ const loadAi = () => {
         .then(data => showAi(data.data.tools));
 };
 
-const showAi = (data) => {
-    console.log(data);
-}
+const showAi = (tools) => {
+    // console.log(data);
+    tools.slice(0, 6).forEach((tool) => {
+        console.log(tool);
+    });
+};
+
+
 loadAi();
