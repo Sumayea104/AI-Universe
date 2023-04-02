@@ -5,34 +5,40 @@ const loadAi = () => {
     fetch(URl)
         .then(res => res.json())
         .then(data => showAi(data.data.tools));
+        
 };
 
 const showAi = (tools) => {
     // console.log(data);
     tools.slice(0, 6).forEach((tool) => {
-        console.log(tool.image);
+        console.log(tool);
 
-    const toolContainer =document.getElementById('AI-container');
-    const aiDiv = document.createElement('div');
-    // aiDiv.classList.add('col');
-    aiDiv.innerHTML = `
+        const toolContainer = document.getElementById('AI-container');
+        const aiDiv = document.createElement('div');
+        // aiDiv.classList.add('col');
+        aiDiv.innerHTML = `
     <div  class="card w-full  bg-base-100 shadow-2xl">
-    <figure class="px-10 pt-10">
-            <img class="w-full h-64" src="${'tool.image'}" alt="Shoes" class="rounded-xl" />
-    </figure>
+            <img class="w-full h-64 px-10 pt-10" src="${tool.image}" alt="Shoes" class="rounded-xl" />
     <div class="card-body">
-            <h2 class="card-title">Features</h2>
-            
-            <button class="btn btn-primary">
+    <h1 class="card-title">${tool}</h1>
+
+    <p >${tool.features}</p>
+    <hr>
+    <h1 class="card-title">${tool.name}</h1>
+    <div class="flex g-4">
+                                <i class="fa-sharp fa-solid fa-calendar-days"></i>
+                                <p>${tool.published_in}</p>
+                            </div>
+            <button class="btn btn-primary ">
                 <i class="fa-solid fa-arrow-right"></i>
             </button>
         </div>
     </div>
     `
 
-    toolContainer.appendChild(aiDiv);
+        toolContainer.appendChild(aiDiv);
     });
-    
+
 };
 
 
