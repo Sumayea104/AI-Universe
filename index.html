@@ -18,30 +18,40 @@
         <section>
             <div class="text-center ">
                 <h1 class="font-bold text-3xl my-6">AI Universe Hub</h1>
-                <button class="btn btn-primary my-6">Sort By Date</button>
+                <button id="sort-date" class="btn btn-primary my-6">Sort By Date</button>
+                <div class="flex items-center justify-center">
+                    <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                        role="status">
+                        <span
+                            class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+                    </div>
+                </div>
             </div>
         </section>
     </header>
     <main>
         <section class=" mx-20 my-12">
             <div id="AI-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                
-                    <!-- <div class="cols"> -->
-                        <!-- <figure class="px-10 pt-10">
-                            <img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" class="rounded-xl" />
-                        </figure>
-                        <div class="card-body">
-                            <h2 class="card-title">Features</h2>
-                            <p>If a dog chews shoes whose shoes does he choose?</p>
-                            <div class="card-actions justify-end">
-                                <button class="btn btn-primary">
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </button>
-                            </div> -->
-                            
-                        <!-- </div> -->
+
+                <!-- <div class="card w-full  bg-base-100 shadow-2xl">
+                    <img class="w-full h-64 px-10 pt-10" src="${tool.image}" alt="Shoes" class="rounded-xl" />
+                    <div class="card-body">
+                        <h1 class="card-title">Features</h1>
+                        <ol>
+                            ${tool.features.map((feature, index) => `<li>${index + 1}. ${feature}</li>`).join('')}
+                        </ol>
+                        <hr>
+                        <h1 class="card-title">${tool.name}</h1>
+                        <div class="flex g-4">
+                            <i class="fa-sharp fa-solid fa-calendar-days"></i>
+                            <p>${tool.published_in}</p>
+                            <button class="btn btn-circle btn-outline btn-accent ">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </div> -->
+                
             </div>
             <div class="text-center ">
                 <button class="btn btn-active btn-accent my-12 ">See More</button>
