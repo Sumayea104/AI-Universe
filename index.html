@@ -20,7 +20,7 @@
                 <h1 class="font-bold text-3xl my-6">AI Universe Hub</h1>
 
                 <button id="sort-date" class="btn btn-primary my-6">Sort By Date</button>
-                
+
             </div>
         </section>
     </header>
@@ -28,18 +28,53 @@
         <section class=" mx-20 my-12">
             <div id="AI-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                
-                
             </div>
         </section>
         <section>
-            <div  class="text-center ">
+            <!-- Put this part before </body> tag -->
+            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+            <div class="modal">
+                <div class="modal-box relative">
+                    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="flex">
+                                <div class="left-container">
+                                    <h1 class="font-bold text-3xl my-6"></h1>
+                                    <div class="flex">
+                                        <button class="btn btn-primary my-6"></button>
+                                        <button class="btn btn-primary my-6"></button>
+                                        <button class="btn btn-primary my-6"></button>
+                                    </div>
+                                    <div class="flex ">
+                                        <div>features</div>
+                                        <div>integrations</div>
+                                    </div>
+                                </div>
+                                <div class="right-container">
+                                    <img src="" alt="">
+                                    <h1 class="font-bold text-3xl my-6"></h1>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="text-center ">
                 <button id="See-more" class="btn btn-active btn-accent my-12 ">See More</button>
             </div>
         </section>
     </main>
 
     <script src="js/script.js"></script>
+    <script src="js/modal.js"></script>
 </body>
 
 </html>
