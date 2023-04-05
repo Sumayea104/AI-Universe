@@ -77,16 +77,7 @@ const sortCardsByDate = () => {
 document.getElementById("sort-date").addEventListener("click", sortCardsByDate);
 
 
-const loadAiDetails = () => {
-  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
 
-  fetch(url)
-      .then((res) => res.json())
-      .then((data) => showAiInfo(data.data.id));
-};
-const displayApiDetails = Api =>{
-  console.log(Api);
-}
 
 
 
