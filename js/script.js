@@ -30,15 +30,51 @@ const showAi = (tools) => {
               <p>${tool.published_in}</p>
               
               
-              <label for="my-modal-3" class="btn btn-circle btn-outline btn-accent">
+              <label for="my-modal-3" class="btn btn-circle btn-outline btn-accent" onclick="showDetails('${tool.id}')">
                 <i class="fa-solid fa-arrow-right"></i>
               </label>
+              <section>
+        
+            <input id="my-modal-3" type="checkbox"  class="modal-toggle" />
+            <div class="modal">
+                <div id="modal-details" class="modal-box relative">
+                    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="flex">
+                                <div class="left-container">
+                                    <h1 class="font-bold text-3xl my-6"></h1>
+                                    <div class="flex">
+                                        <button class="btn btn-primary my-6"></button>
+                                        <button class="btn btn-primary my-6"></button>
+                                        <button class="btn btn-primary my-6"></button>
+                                    </div>
+                                    <div class="flex ">
+                                        <div>features</div>
+                                        <div>integrations</div>
+                                    </div>
+                                </div>
+                                <div class="right-container">
+                                    <img src="" alt="">
+                                    <h1 class="font-bold text-3xl my-6"></h1>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
               
+
               
             </div>
           </div>
         </div>
       `;
+      
+
 
         toolContainer.appendChild(aiDiv);
     });
@@ -77,6 +113,38 @@ const sortCardsByDate = () => {
 document.getElementById("sort-date").addEventListener("click", sortCardsByDate);
 
 
+// function to fetch data from API and show in modal
+const showDetails = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/ai/tool/${id}`)
+      .then(response => response.json())
+      .then(data => {
+          // get modal and modal-details div
+          const modal = document.getElementById("my-modal");
+          const modalDetails = document.getElementById("modal-details");
+
+          // set modal content
+          modalDetails.innerHTML = `
+        <h2>${data.title}</h2>
+        <p>${data.description}</p>
+        <p>Price: ${data.price}</p>
+      `;
+
+          // display modal
+          modal.style.display = "block";
+
+          // close modal on clicking close button
+          const closeBtn = document.getElementsByClassName("close")[0];
+          closeBtn.onclick = () => modal.style.display = "none";
+
+          // close modal on clicking anywhere outside the modal
+          window.onclick = (event) => {
+              if (event.target == modal) {
+                  modal.style.display = "none";
+              }
+          }
+      })
+      .catch(error => console.log(error));
+}
 
 
 
