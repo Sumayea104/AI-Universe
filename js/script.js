@@ -40,28 +40,7 @@ const showAi = (tools) => {
                 <div id="modal-details" class="modal-box relative">
                     <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="flex">
-                                <div class="left-container">
-                                    <h1 class="font-bold text-3xl my-6"></h1>
-                                    <div class="flex">
-                                        <button class="btn btn-primary my-6"></button>
-                                        <button class="btn btn-primary my-6"></button>
-                                        <button class="btn btn-primary my-6"></button>
-                                    </div>
-                                    <div class="flex ">
-                                        <div>features</div>
-                                        <div>integrations</div>
-                                    </div>
-                                </div>
-                                <div class="right-container">
-                                    <img src="" alt="">
-                                    <h1 class="font-bold text-3xl my-6"></h1>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="modal-details" class="modal-dialog">
                     </div>
                 </div>
             </div>
@@ -69,9 +48,7 @@ const showAi = (tools) => {
               
 
               
-            </div>
-          </div>
-        </div>
+            
       `;
       
 
@@ -124,9 +101,38 @@ const showDetails = (id) => {
 
           // set modal content
           modalDetails.innerHTML = `
-        <h2>${data.title}</h2>
-        <p>${data.description}</p>
+        
+        
+          <div class="card lg:card-side bg-base-100 shadow-xl">
+          <div>
+            <h1>${data.description}</h1>
+            <div class="flex">
+                <p>${data.pricing}</p>
+                <p>${data.pricing}</p>
+                <p>${data.pricing}</p>
+            </div>
+            <div>
+                <div>
+                    <h1></h1>
+                </div>
+            </div>
         <p>Price: ${data.price}</p>
+        </div>
+          <div class="card-body">
+            <h2 class="card-title">New album is released!</h2>
+            <p>Click the button to listen on Spotiwhy app.</p>
+            
+          </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+          
       `;
 
           // display modal
