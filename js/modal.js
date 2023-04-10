@@ -41,7 +41,7 @@ const showAi = (tools) => {
                       <label for="my-modal-3"
                           class="btn btn-sm btn-circle absolute right-2 top-2 bg-white border-hidden text-red-800"> ✕
                       </label>
-                      <div>
+                      <div id="modal-details">
                       
                       
                           </div>
@@ -111,6 +111,31 @@ const showDetailsData = (data) => {
     // console.log(data)
     const modal = document.getElementById("my-modal-3");
     const modalDetails = document.getElementById("modal-details");
+    modalDetails.innerHTML = `
+    
+    <div class="card lg:card-side bg-base-100 shadow-xl my-12 p-8">
+        <div>
+            <h1>${data.description}</h1>
+            <div class="flex">
+                <p>${data.pricing}</p>
+                <p>${data.pricing}</p>
+                <p>${data.pricing}</p>
+            </div>
+        <div>
+        <div>
+            <h1></h1>
+        </div>
+    </div>
+    <p>Price: ${data.price}</p>
+    </div>
+    <div class="card-body">
+        <h2 class="card-title">New album is released!</h2>
+        <p>Click the button to listen on Spotiwhy app.</p>
+        
+    </div>
+    </div>
+    
+    `
 };
 
 
