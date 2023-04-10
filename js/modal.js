@@ -108,14 +108,31 @@ const showDetails = () => {
 
     };
 const showDetailsData = (data) => {
-    // console.log(data)
+    console.log(data)
+    for (let singleData of data.slice(0.5)){
+        console.log(singleData);
+
+
+
+36.35
+
+
+
+
+
+
+
+
+
+
+    }
     const modal = document.getElementById("my-modal-3");
     const modalDetails = document.getElementById("modal-details");
     modalDetails.innerHTML = `
     
     <div class="card lg:card-side bg-base-100 shadow-xl my-12 p-8">
         <div>
-            <h1>${data.description}</h1>
+            <h1>${tools.description}</h1>
             <div class="flex">
                 <p>${data.pricing}</p>
                 <p>${data.pricing}</p>
