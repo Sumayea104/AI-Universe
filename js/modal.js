@@ -10,52 +10,51 @@ const showAi = (tools) => {
     const toolContainer = document.getElementById("AI-container");
 
     tools.forEach((tool) => {
-        const aiDiv = document.createElement("div");
+    const aiDiv = document.createElement("div");
 
-        aiDiv.innerHTML = `
-        <div class="card w-full  bg-base-100 shadow-2xl">
-          <img class="w-full h-64 px-10 pt-10" src="${tool.image
-            }" alt="Shoes" class="rounded-xl" />
-          <div class="card-body">
+    aiDiv.innerHTML = `
+    <div class="card w-full bg-base-100 shadow-2xl">
+        <img class="w-full h-64 px-10 pt-10" src="${tool.image}" alt="Shoes" class="rounded-xl" />
+        <div class="card-body">
             <h1 class="card-title">Features</h1>
             <ol>
-              ${tool.features
-                .map((feature, index) => `<li>${index + 1}. ${feature}</li>`)
-                .join("")}
+            ${tool.features
+            .map((feature, index) => `<li>${index + 1}. ${feature}</li>`)
+            .join("")}
             </ol>
-            <hr>
-            <h1 class="card-title">${tool.name}</h1>
+        <hr>
+        <h1 class="card-title">${tool.name}</h1>
             <div class="flex g-4">
-              <i class="fa-sharp fa-solid fa-calendar-days"></i>
-              <p>${tool.published_in}</p>
-              
-              
-              <label for="my-modal-3" class="btn btn-circle btn-outline btn-accent" onclick="showDetails('${tool.id}')">
+                <i class="fa-sharp fa-solid fa-calendar-days"></i>
+                <p>${tool.published_in}</p>
+                <label for="my-modal-3" class="btn btn-circle btn-outline btn-accent" onclick="showDetails('${tool.id}')">
                 <i class="fa-solid fa-arrow-right"></i>
-              </label>
-              <section>
-        
-              <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-              <div class="modal">
-                  <div class="modal-box relative">
-                      <label for="my-modal-3"
-                          class="btn btn-sm btn-circle absolute right-2 top-2 bg-white border-hidden text-red-800"> ✕
-                      </label>
-                      <div id="modal-details">
-                      
-                      
-                          </div>
-                      <div class="modal-action">
-                          <label for="my-modal-3" class="btn bg-error border-hidden">Close!</label>
-                      </div>
-                  </div>
-              </div>
-  
-        </section>
-              
+                </label>
+            </div>
+        </div>
+    </div>
 
-              
-            
+    
+        <section>
+
+            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+            <div class="modal">
+                <div class="modal-box relative">
+                    <label for="my-modal-3"
+                        class="btn btn-sm btn-circle absolute right-2 top-2 bg-white border-hidden text-red-800"> ✕
+                    </label>
+                    <div id="modal-details">
+
+
+                    </div>
+                    <div class="modal-action">
+                        <label for="my-modal-3" class="btn bg-error border-hidden">Close!</label>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+             
       `;
 
 
@@ -96,64 +95,71 @@ const sortCardsByDate = () => {
 
 document.getElementById("sort-date").addEventListener("click", sortCardsByDate);
 
-
-// function to fetch data from API and show in modal
-const showDetails = () => {
-    fetch(`https://openapi.programming-hero.com/api/ai/tool/01`)
-        .then(res => res.json())
-        .then(data => showDetailsData(data))
-        .catch((err)=>{
-            console.log(err)
-        });
-
-    };
-const showDetailsData = (data) => {
-    console.log(data)
-    for (let singleData of data.slice(0.5)){
-        console.log(singleData);
-
-
-
-36.35
-
-
-
-
-
-
-
-
-
-
-    }
-    const modal = document.getElementById("my-modal-3");
-    const modalDetails = document.getElementById("modal-details");
-    modalDetails.innerHTML = `
-    
-    <div class="card lg:card-side bg-base-100 shadow-xl my-12 p-8">
-        <div>
-            <h1>${tools.description}</h1>
-            <div class="flex">
-                <p>${data.pricing}</p>
-                <p>${data.pricing}</p>
-                <p>${data.pricing}</p>
-            </div>
-        <div>
-        <div>
-            <h1></h1>
-        </div>
-    </div>
-    <p>Price: ${data.price}</p>
-    </div>
-    <div class="card-body">
-        <h2 class="card-title">New album is released!</h2>
-        <p>Click the button to listen on Spotiwhy app.</p>
-        
-    </div>
-    </div>
-    
-    `
-};
-
-
 loadAi();
+// function to fetch data from API and show in modal
+const showDetails = (id) => {
+    const apiUrl = 'https://openapi.programming-hero.com/api/ai/tool/01';
+    fetch(apiUrl)
+        .then(res => res.json())
+        .then(data => {
+            // Get the relevant data from the API response
+            
+            const description = data.data.description;
+            
+            
+            const features = data.data.features;
+            const integrations = data.data.integrations;
+            
+            const pricing = data.data.pricing;
+            const accuracy = data.data.accuracy;
+        
+            // Display the data on the HTML page
+            
+            document.getElementById('description').innerHTML = description;
+            
+            document.getElementById('features').innerHTML = JSON.stringify(features);
+            document.getElementById('integrations').innerHTML = JSON.stringify(integrations);
+            
+            document.getElementById('pricing').innerHTML = JSON.stringify(pricing);
+            document.getElementById('accuracy-score').innerHTML = accuracy.score;
+            document.getElementById('accuracy-description').innerHTML = accuracy.description;
+            })
+        .catch((err)=> {
+            console.log(err);
+        });
+    };
+    const showDetailsData = (data) => {
+        const modal = document.getElementById("my-modal-3");
+        data.forEach((info) =>{
+            const modalDetails = document.createElement("div");
+            modalDetails.className = "card lg:card-side bg-base-100 shadow-xl my-12 p-8";
+            modalDetails.innerHTML = `
+                <div>
+                    <h1>${info.data.description}</h1>
+                    
+                    <div class="flex">
+                        <p>${info.data.pricing[0].plan}: ${info.data.pricing[0].price}</p>
+                        <p>${info.data.pricing[1].plan}: ${info.data.pricing[1].price}</p>
+                        <p>${info.data.pricing[2].plan}: ${info.data.pricing[2].price}</p>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <img class="w-full h-64 px-10 pt-10" src="${info.data.image_link[0]}" alt="ChatGPT" class="rounded-xl" />
+                    <h2 class="card-title">Use Cases:</h2>
+                    <ul>
+                        <li>${info.data.use_cases[0].name}: ${info.data.use_cases[0].description}</li>
+                        <li>${info.data.use_cases[1].name}: ${info.data.use_cases[1].description}</li>
+                        <li>${info.data.use_cases[2].name}: ${info.data.use_cases[2].description}</li>
+                    </ul>
+                    <p>Accuracy Score: ${info.data.accuracy.score}</p>
+                    <p>Accuracy Description: ${info.data.accuracy.description}</p>
+                </div>
+            `;
+            modal.appendChild(modalDetails);
+        });
+    };
+    
+
+
+
+showDetails();
