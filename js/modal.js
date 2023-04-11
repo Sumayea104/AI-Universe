@@ -23,11 +23,11 @@ const showAi = (tools) => {
             .join("")}
             </ol>
         <hr>
-        <h1 class="card-title">${tool.name}</h1>
+            <h1 class="card-title">${tool.name}</h1>
             <div class="flex g-4">
                 <i class="fa-sharp fa-solid fa-calendar-days"></i>
                 <p>${tool.published_in}</p>
-                <label for="my-modal-3" class="btn btn-circle btn-outline btn-accent" onclick="showDetails('${tool.id}')">
+                <label for="my-modal-5" class="btn btn-circle btn-outline btn-accent" onclick="showDetails('${tool.id}')">
                 <i class="fa-solid fa-arrow-right"></i>
                 </label>
             </div>
@@ -37,10 +37,10 @@ const showAi = (tools) => {
     
         <section>
 
-            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+            <input type="checkbox" id="my-modal-5" class="modal-toggle" />
             <div class="modal">
                 <div class="modal-box relative">
-                    <label for="my-modal-3"
+                    <label for="my-modal-5"
                         class="btn btn-sm btn-circle absolute right-2 top-2 bg-white border-hidden text-red-800"> ✕
                     </label>
                     <div id="modal-details">
@@ -48,7 +48,7 @@ const showAi = (tools) => {
 
                     </div>
                     <div class="modal-action">
-                        <label for="my-modal-3" class="btn bg-error border-hidden">Close!</label>
+                        <label for="my-modal-5" class="btn bg-error border-hidden">Close!</label>
                     </div>
                 </div>
             </div>
@@ -114,22 +114,43 @@ const showDetailsData = (data) => {
     modalDetails.className = "card lg:card-side bg-base-100 shadow-xl my-12 p-8";
     modalDetails.innerHTML = `
         <div>
-            <h1 class="text-3xl">${data.description}</h1>
+            <h1 class="text-2xl">${data.description}</h1>
             
+            <div class="">
+                <button class="btn btn-secondary">
+                ${data.pricing[0].plan}:<br> 
+                ${data.pricing[0].price}</button>
+                <button class="btn btn-secondary">${data.pricing[1].plan}:<br> ${data.pricing[1].price}</button>
+                <button class="btn btn-secondary">${data.pricing[2].plan}:<br> ${data.pricing[2].price}</button>
+            </div>
             <div class="flex">
-                <p>${data.pricing[0].plan}: ${data.pricing[0].price}</p>
-                <p>${data.pricing[1].plan}: ${data.pricing[1].price}</p>
-                <p>${data.pricing[2].plan}: ${data.pricing[2].price}</p>
+            <div>
+            <h1 class="card-title">Features</h1>
+            <ol>
+            ${Object.values(data.features)
+            .map((feature, index) => `<li>${index + 1}. ${feature.feature_name}</li>`)
+            .join("")}
+        </ol>
+            </div>
+            <div>
+            <h1 class="card-title">Integrations</h1>
+                <ul>
+                ${data.integrations
+                .map((integration) => `<li>${integration}</li>`)
+                .join("")}
+                </ul>
             </div>
         </div>
+    </div>
         <div class="card-body">
             <img class="w-full h-64 px-10 pt-10" src="${data.image_link[0]}" alt="ChatGPT" class="rounded-xl" />
-            <h2 class="card-title">Use Cases:</h2>
-            <ul>
-                <li>${data.use_cases[0]}</li>
-                <li>${data.use_cases[1]}</li>
-                <li>${data.use_cases[2]}</li>
-            </ul>
+            <h2 class="card-title">Input-Output Example:</h2>
+            <p>
+            <strong>${data.input_output_examples[0].input} </strong> <br>
+            ${data.input_output_examples[0].output}
+            </p>
+            
+
         </div>
     `;
     
