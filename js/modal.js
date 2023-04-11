@@ -54,8 +54,7 @@ const showAi = (tools) => {
             </div>
 
         </section>
-             
-      `;
+    `;
 
 
 
@@ -98,68 +97,47 @@ document.getElementById("sort-date").addEventListener("click", sortCardsByDate);
 loadAi();
 // function to fetch data from API and show in modal
 const showDetails = (id) => {
-    const apiUrl = 'https://openapi.programming-hero.com/api/ai/tool/01';
+    const apiUrl = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     fetch(apiUrl)
         .then(res => res.json())
         .then(data => {
-            // Get the relevant data from the API response
-            
-            const description = data.data.description;
-            
-            
-            const features = data.data.features;
-            const integrations = data.data.integrations;
-            
-            const pricing = data.data.pricing;
-            const accuracy = data.data.accuracy;
-        
-            // Display the data on the HTML page
-            
-            document.getElementById('description').innerHTML = description;
-            
-            document.getElementById('features').innerHTML = JSON.stringify(features);
-            document.getElementById('integrations').innerHTML = JSON.stringify(integrations);
-            
-            document.getElementById('pricing').innerHTML = JSON.stringify(pricing);
-            document.getElementById('accuracy-score').innerHTML = accuracy.score;
-            document.getElementById('accuracy-description').innerHTML = accuracy.description;
-            })
+            // Call the showDetailsData function with the relevant data
+            showDetailsData(data.data);
+        })
         .catch((err)=> {
             console.log(err);
         });
-    };
-    const showDetailsData = (data) => {
-        const modal = document.getElementById("my-modal-3");
-        data.forEach((info) =>{
-            const modalDetails = document.createElement("div");
-            modalDetails.className = "card lg:card-side bg-base-100 shadow-xl my-12 p-8";
-            modalDetails.innerHTML = `
-                <div>
-                    <h1>${info.data.description}</h1>
-                    
-                    <div class="flex">
-                        <p>${info.data.pricing[0].plan}: ${info.data.pricing[0].price}</p>
-                        <p>${info.data.pricing[1].plan}: ${info.data.pricing[1].price}</p>
-                        <p>${info.data.pricing[2].plan}: ${info.data.pricing[2].price}</p>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <img class="w-full h-64 px-10 pt-10" src="${info.data.image_link[0]}" alt="ChatGPT" class="rounded-xl" />
-                    <h2 class="card-title">Use Cases:</h2>
-                    <ul>
-                        <li>${info.data.use_cases[0].name}: ${info.data.use_cases[0].description}</li>
-                        <li>${info.data.use_cases[1].name}: ${info.data.use_cases[1].description}</li>
-                        <li>${info.data.use_cases[2].name}: ${info.data.use_cases[2].description}</li>
-                    </ul>
-                    <p>Accuracy Score: ${info.data.accuracy.score}</p>
-                    <p>Accuracy Description: ${info.data.accuracy.description}</p>
-                </div>
-            `;
-            modal.appendChild(modalDetails);
-        });
-    };
+};
+
+const showDetailsData = (data) => {
+    const modalDetails = document.createElement("div");
+    modalDetails.className = "card lg:card-side bg-base-100 shadow-xl my-12 p-8";
+    modalDetails.innerHTML = `
+        <div>
+            <h1 class="text-3xl">${data.description}</h1>
+            
+            <div class="flex">
+                <p>${data.pricing[0].plan}: ${data.pricing[0].price}</p>
+                <p>${data.pricing[1].plan}: ${data.pricing[1].price}</p>
+                <p>${data.pricing[2].plan}: ${data.pricing[2].price}</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <img class="w-full h-64 px-10 pt-10" src="${data.image_link[0]}" alt="ChatGPT" class="rounded-xl" />
+            <h2 class="card-title">Use Cases:</h2>
+            <ul>
+                <li>${data.use_cases[0]}</li>
+                <li>${data.use_cases[1]}</li>
+                <li>${data.use_cases[2]}</li>
+            </ul>
+        </div>
+    `;
     
+    // Append the modalDetails element to the modal-details element
+    const modalDetailsContainer = document.getElementById("modal-details");
+    modalDetailsContainer.innerHTML = '';
+    modalDetailsContainer.appendChild(modalDetails);
+};
 
 
-
-showDetails();
+// showDetails();
