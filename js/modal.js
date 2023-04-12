@@ -123,25 +123,25 @@ const showDetailsData = (data) => {
                 <button class="btn btn-secondary">${data.pricing[1].plan}:<br> ${data.pricing[1].price}</button>
                 <button class="btn btn-secondary">${data.pricing[2].plan}:<br> ${data.pricing[2].price}</button>
             </div>
-            <div class="flex">
-            <div>
-            <h1 class="card-title">Features</h1>
-            <ol>
-            ${Object.values(data.features)
-            .map((feature, index) => `<li>${index + 1}. ${feature.feature_name}</li>`)
-            .join("")}
-        </ol>
-            </div>
-            <div>
-            <h1 class="card-title">Integrations</h1>
-                <ul>
-                ${data.integrations
-                .map((integration) => `<li>${integration}</li>`)
-                .join("")}
-                </ul>
+            <div class="flex g-4" >
+                <div>
+                    <h1 class="card-title">Features</h1>
+                    <ol>
+                        ${Object.values(data.features)
+                        .map((feature, index) => `<li>${index + 1}. ${feature.feature_name}</li>`)
+                        .join("")}
+                    </ol>
+                </div>
+                <div>
+                    <h1 class="card-title">Integrations</h1>
+                    <ul>
+                    ${data.integrations
+                    .map((integration) => `<li>${integration}</li>`)
+                    .join("")}
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
         <div class="card-body">
             <img class="w-full h-64 px-10 pt-10" src="${data.image_link[0]}" alt="ChatGPT" class="rounded-xl" />
             <h2 class="card-title">Input-Output Example:</h2>
@@ -161,4 +161,4 @@ const showDetailsData = (data) => {
 };
 
 
-// showDetails();
+
