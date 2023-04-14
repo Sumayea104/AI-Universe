@@ -14,7 +14,7 @@ const showAi = (tools) => {
 
     aiDiv.innerHTML = `
     <div class="card w-full bg-base-100 shadow-2xl">
-        <img class="w-full h-64 px-10 pt-10" src="${tool.image}" alt="Shoes" class="rounded-xl" />
+        <img class="w-full h-64 px-10 pt-10" src="${tool.image}" alt="" class="rounded-xl" />
         <div class="card-body">
             <h1 class="card-title">Features</h1>
             <ol>
@@ -39,7 +39,7 @@ const showAi = (tools) => {
 
             <input type="checkbox" id="my-modal-5" class="modal-toggle" />
             <div class="modal">
-                <div class="modal-box relative">
+                <div class="modal-box w-11/12 max-w-5xl">
                     <label for="my-modal-5"
                         class="btn btn-sm btn-circle absolute right-2 top-2 bg-white border-hidden text-red-800"> ✕
                     </label>
@@ -117,11 +117,11 @@ const showDetailsData = (data) => {
             <h1 class="text-2xl">${data.description}</h1>
             
             <div class="">
-                <button class="btn btn-secondary">
+                <button class="btn btn-primary">
                 ${data.pricing[0].plan}:<br> 
                 ${data.pricing[0].price}</button>
-                <button class="btn btn-secondary">${data.pricing[1].plan}:<br> ${data.pricing[1].price}</button>
-                <button class="btn btn-secondary">${data.pricing[2].plan}:<br> ${data.pricing[2].price}</button>
+                <button class="btn btn-primary">${data.pricing[1].plan}:<br> ${data.pricing[1].price}</button>
+                <button class="btn btn-primary">${data.pricing[2].plan}:<br> ${data.pricing[2].price}</button>
             </div>
             <div class="flex g-4" >
                 <div>
