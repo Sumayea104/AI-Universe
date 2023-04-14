@@ -111,19 +111,21 @@ const showDetails = (id) => {
 
 const showDetailsData = (data) => {
     const modalDetails = document.createElement("div");
-    modalDetails.className = "card lg:card-side bg-base-100 shadow-xl my-12 p-8";
+    modalDetails.className = "p-8";
     modalDetails.innerHTML = `
-        <div>
-            <h1 class="text-2xl">${data.description}</h1>
-            
-            <div class="">
-                <button class="btn btn-primary">
-                ${data.pricing[0].plan}:<br> 
-                ${data.pricing[0].price}</button>
-                <button class="btn btn-primary">${data.pricing[1].plan}:<br> ${data.pricing[1].price}</button>
-                <button class="btn btn-primary">${data.pricing[2].plan}:<br> ${data.pricing[2].price}</button>
-            </div>
-            <div class="flex g-4" >
+    <div class="flex">
+        <div class="card lg:card-side bg-blue-100 shadow-xl my-12 flex-1">
+            <div class="card-body">
+                <h1 class="text-2xl font-bold px-4 pt-4">${data.description}</h1>
+
+                <div class="flex px-4 pt-4 justify-around">
+                    <button class="btn btn-primary">
+                    ${data.pricing[0].plan}:<br> 
+                    ${data.pricing[0].price}</button>
+                    <button class="btn btn-primary">${data.pricing[1].plan}:<br> ${data.pricing[1].price}</button>
+                    <button class="btn btn-primary">${data.pricing[2].plan}:<br> ${data.pricing[2].price}</button>
+                </div>
+                <div class="flex px-4 pt-4 my-4 justify-around" >
                 <div>
                     <h1 class="card-title">Features</h1>
                     <ol>
@@ -135,30 +137,35 @@ const showDetailsData = (data) => {
                 <div>
                     <h1 class="card-title">Integrations</h1>
                     <ul>
-                    ${data.integrations
-                    .map((integration) => `<li>${integration}</li>`)
+                    ${Object.values(data.integrations)
+                    .map((integration, index) => `<li>${index + 1}. ${integration}</li>`)
                     .join("")}
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="card-body">
-            <img class="w-full h-64 px-10 pt-10" src="${data.image_link[0]}" alt="ChatGPT" class="rounded-xl" />
-            <h2 class="card-title">Input-Output Example:</h2>
-            <p>
-            <strong>${data.input_output_examples[0].input} </strong> <br>
-            ${data.input_output_examples[0].output}
-            </p>
+            </div>
             
-
         </div>
+        <div class="card lg:card-side bg-yellow-100 shadow-xl my-12 flex-1">
+            <div class="card-body">
+                <img class="w-full h-64 px-4 pt-4" src="${data.image_link[0]}" alt="ChatGPT" class="rounded-xl" />
+                <h2 class="card-title">Input-Output Example:</h2>
+                <p>
+                <strong>${data.input_output_examples[0].input} </strong> <br>
+                ${data.input_output_examples[0].output}
+                </p>
+            </div>
+        </div>
+    </div>
     `;
     
-    // Append the modalDetails element to the modal-details element
+    
     const modalDetailsContainer = document.getElementById("modal-details");
     modalDetailsContainer.innerHTML = '';
     modalDetailsContainer.appendChild(modalDetails);
 };
+
+
 
 
 
