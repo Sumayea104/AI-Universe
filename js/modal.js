@@ -10,17 +10,17 @@ const showAi = (tools) => {
     const toolContainer = document.getElementById("AI-container");
 
     tools.forEach((tool) => {
-    const aiDiv = document.createElement("div");
+        const aiDiv = document.createElement("div");
 
-    aiDiv.innerHTML = `
+        aiDiv.innerHTML = `
     <div class="card w-full bg-base-100 shadow-2xl">
         <img class="w-full h-64 px-10 pt-10" src="${tool.image}" alt="" class="rounded-xl" />
         <div class="card-body">
             <h1 class="card-title">Features</h1>
             <ol>
             ${tool.features
-            .map((feature, index) => `<li>${index + 1}. ${feature}</li>`)
-            .join("")}
+                .map((feature, index) => `<li>${index + 1}. ${feature}</li>`)
+                .join("")}
             </ol>
         <hr>
             <h1 class="card-title">${tool.name}</h1>
@@ -104,52 +104,55 @@ const showDetails = (id) => {
             // Call the showDetailsData function with the relevant data
             showDetailsData(data.data);
         })
-        .catch((err)=> {
+        .catch((err) => {
             console.log(err);
         });
 };
 
 const showDetailsData = (data) => {
     const modalDetails = document.createElement("div");
-    modalDetails.className = "p-8";
+    modalDetails.className = "p-8 mx-4";
     modalDetails.innerHTML = `
     <div class="flex">
-        <div class="card lg:card-side bg-blue-100 shadow-xl my-12 flex-1">
+        <div class="card lg:card-side bg-blue-100 shadow-xl flex-1">
             <div class="card-body">
                 <h1 class="text-2xl font-bold px-4 pt-4">${data.description}</h1>
 
                 <div class="flex px-4 pt-4 justify-around">
-                    <button class="btn btn-primary">
-                    ${data.pricing[0].plan}:<br> 
-                    ${data.pricing[0].price}</button>
-                    <button class="btn btn-primary">${data.pricing[1].plan}:<br> ${data.pricing[1].price}</button>
-                    <button class="btn btn-primary">${data.pricing[2].plan}:<br> ${data.pricing[2].price}</button>
+                <button class="btn btn-primary">
+                ${data.pricing[0].plan}:<br> 
+                ${data.pricing[0].price}</button>
+                <button class="btn btn-primary">${data.pricing[1].plan}:<br> ${data.pricing[1].price}</button>
+                <button class="btn btn-primary">${data.pricing[2].plan}:<br> ${data.pricing[2].price}</button>
                 </div>
                 <div class="flex px-4 pt-4 my-4 justify-around" >
                 <div>
                     <h1 class="card-title">Features</h1>
                     <ol>
                         ${Object.values(data.features)
-                        .map((feature, index) => `<li>${index + 1}. ${feature.feature_name}</li>`)
-                        .join("")}
+            .map((feature, index) => `<li>${index + 1}. ${feature.feature_name}</li>`)
+            .join("")}
                     </ol>
                 </div>
                 <div>
                     <h1 class="card-title">Integrations</h1>
                     <ul>
                     ${Object.values(data.integrations)
-                    .map((integration, index) => `<li>${index + 1}. ${integration}</li>`)
-                    .join("")}
+            .map((integration, index) => `<li>${index + 1}. ${integration}</li>`)
+            .join("")}
                     </ul>
                 </div>
             </div>
             </div>
             
         </div>
-        <div class="card lg:card-side bg-yellow-100 shadow-xl my-12 flex-1">
+        <div class="card lg:card-side bg-yellow-100 shadow-xl  flex-1">
             <div class="card-body">
-                <img class="w-full h-64 px-4 pt-4" src="${data.image_link[0]}" alt="ChatGPT" class="rounded-xl" />
-                <h2 class="card-title">Input-Output Example:</h2>
+            <div class="relative">
+            <img class="w-full h-64 rounded-xl" src="${data.image_link[0]}" alt="ChatGPT" />
+            <div class="absolute top-0 right-0 bg-white p-2 rounded-bl-lg font-bold">${data.accuracy.score * 100}% accuracy</div>
+            </div>
+                        
                 <p>
                 <strong>${data.input_output_examples[0].input} </strong> <br>
                 ${data.input_output_examples[0].output}
@@ -158,8 +161,8 @@ const showDetailsData = (data) => {
         </div>
     </div>
     `;
-    
-    
+
+
     const modalDetailsContainer = document.getElementById("modal-details");
     modalDetailsContainer.innerHTML = '';
     modalDetailsContainer.appendChild(modalDetails);
