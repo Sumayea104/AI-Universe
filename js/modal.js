@@ -148,7 +148,7 @@ const showDetailsData = (data) => {
             </div>
         </div>
     </div>
-    <div class="card bg-yellow-100 shadow-xl flex-1 mt-4 ml-4">
+    <div class="card bg-yellow-100 shadow-xl flex-1 mt-4 sm:ml-4">
         <div class="card-body">
             <div class="relative">
                 <img class="w-full h-64 rounded-xl" src="${data.image_link[0]}" alt="ChatGPT" />
