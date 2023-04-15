@@ -149,16 +149,19 @@ const showDetailsData = (data) => {
         </div>
     </div>
     <div class="card bg-yellow-100 shadow-xl flex-1 mt-4 sm:ml-4">
-        <div class="card-body">
-            <div class="relative">
-                <img class="w-full h-64 rounded-xl" src="${data.image_link[0]}" alt="ChatGPT" />
-                <div class="absolute top-0 right-0 bg-red-500 text-white p-2 rounded-bl-lg font-bold">${data.accuracy.score * 100}% accuracy</div>
-            </div>
-            <p>
-                <strong>${data.input_output_examples[0].input}</strong> <br>
-                ${data.input_output_examples[0].output}
-            </p>
+    <div class="card-body">
+        <div class="relative">
+            <img class="w-full h-64 rounded-xl" src="${data.image_link[0]}" alt="ChatGPT" />
+            ${data.accuracy.score > 0 ? `<div class="absolute top-0 right-0 bg-red-500 text-white p-2 rounded-bl-lg font-bold">${data.accuracy.score * 100}% accuracy</div>` : ""}
+
         </div>
+        <p>
+            <strong>${data.input_output_examples[0].input}</strong> <br>
+            ${data.input_output_examples[0].output}
+        </p>
+    </div>
+</div>
+
     </div>
 </div>
 
