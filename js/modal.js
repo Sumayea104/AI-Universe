@@ -24,10 +24,10 @@ const showAi = (tools) => {
             </ol>
         <hr>
             <h1 class="card-title">${tool.name}</h1>
-            <div class="flex g-4">
-                <i class="fa-sharp fa-solid fa-calendar-days"></i>
+            <div class="flex ">
+                <i class="fa-sharp fa-solid fa-calendar-days p-1"></i>
                 <p>${tool.published_in}</p>
-                <label for="my-modal-5" class="btn btn-circle btn-outline btn-accent" onclick="showDetails('${tool.id}')">
+                <label for="my-modal-5" class="btn btn-circle btn-outline btn-accent " onclick="showDetails('${tool.id}')">
                 <i class="fa-solid fa-arrow-right"></i>
                 </label>
             </div>
