@@ -13,7 +13,7 @@ const showAi = (tools) => {
         const aiDiv = document.createElement("div");
 
         aiDiv.innerHTML = `
-    <div class="card w-full bg-base-100 shadow-2xl">
+    <div class="card w-full bg-base-100 shadow-2xl h-full">
         <img class="w-full h-64 px-10 pt-10" src="${tool.image}" alt="" class="rounded-xl" />
         <div class="card-body">
             <h1 class="card-title">Features</h1>
