@@ -48,7 +48,7 @@ const showAi = (tools) => {
 
                     </div>
                     <div class="modal-action">
-                        <label for="my-modal-5" class="btn bg-error border-hidden">Close!</label>
+                        <label for="my-modal-5" class="btn bg-red-500 border-hidden">Close!</label>
                     </div>
                 </div>
             </div>
@@ -111,55 +111,57 @@ const showDetails = (id) => {
 
 const showDetailsData = (data) => {
     const modalDetails = document.createElement("div");
-    modalDetails.className = "p-8 mx-4";
+    
     modalDetails.innerHTML = `
-    <div class="flex">
-        <div class="card lg:card-side bg-blue-100 shadow-xl flex-1">
-            <div class="card-body">
-                <h1 class="text-2xl font-bold px-4 pt-4">${data.description}</h1>
-
-                <div class="flex px-4 pt-4 justify-around">
-                <button class="btn btn-primary">
-                ${data.pricing[0].plan}:<br> 
-                ${data.pricing[0].price}</button>
-                <button class="btn btn-primary">${data.pricing[1].plan}:<br> ${data.pricing[1].price}</button>
-                <button class="btn btn-primary">${data.pricing[2].plan}:<br> ${data.pricing[2].price}</button>
-                </div>
-                <div class="flex px-4 pt-4 my-4 justify-around" >
+    <div class="flex flex-col md:flex-row ">
+    <div class="card bg-blue-100 shadow-xl flex-1 mt-4">
+        <div class="card-body">
+            <h1 class="text-2xl font-bold ">${data.description}</h1>
+            <div class="flex flex-col md:flex-row  justify-around">
+                <button class="btn btn-primary md:mr-4 my-2 w-full md:w-1/3">
+                    ${data.pricing[0].plan}:<br> ${data.pricing[0].price}
+                </button>
+                <button class="btn btn-primary md:mr-4 my-2 w-full md:w-1/3">
+                    ${data.pricing[1].plan}:<br> ${data.pricing[1].price}
+                </button>
+                <button class="btn btn-primary md:mr-4 my-2 w-full md:w-1/3">
+                    ${data.pricing[2].plan}:<br> ${data.pricing[2].price}
+                </button>
+            </div>
+            <div class="flex flex-col md:flex-row  my-4 justify-around">
                 <div>
                     <h1 class="card-title">Features</h1>
                     <ol>
                         ${Object.values(data.features)
-            .map((feature, index) => `<li>${index + 1}. ${feature.feature_name}</li>`)
-            .join("")}
+                            .map((feature, index) => `<li>${index + 1}. ${feature.feature_name}</li>`)
+                            .join("")}
                     </ol>
                 </div>
                 <div>
                     <h1 class="card-title">Integrations</h1>
                     <ul>
-                    ${Object.values(data.integrations)
-            .map((integration, index) => `<li>${index + 1}. ${integration}</li>`)
-            .join("")}
+                        ${Object.values(data.integrations)
+                            .map((integration, index) => `<li>${index + 1}. ${integration}</li>`)
+                            .join("")}
                     </ul>
                 </div>
             </div>
-            </div>
-            
-        </div>
-        <div class="card lg:card-side bg-yellow-100 shadow-xl  flex-1">
-            <div class="card-body">
-            <div class="relative">
-            <img class="w-full h-64 rounded-xl" src="${data.image_link[0]}" alt="ChatGPT" />
-            <div class="absolute top-0 right-0 bg-white p-2 rounded-bl-lg font-bold">${data.accuracy.score * 100}% accuracy</div>
-            </div>
-                        
-                <p>
-                <strong>${data.input_output_examples[0].input} </strong> <br>
-                ${data.input_output_examples[0].output}
-                </p>
-            </div>
         </div>
     </div>
+    <div class="card bg-yellow-100 shadow-xl flex-1 mt-4 ml-4">
+        <div class="card-body">
+            <div class="relative">
+                <img class="w-full h-64 rounded-xl" src="${data.image_link[0]}" alt="ChatGPT" />
+                <div class="absolute top-0 right-0 bg-red-500 text-white p-2 rounded-bl-lg font-bold">${data.accuracy.score * 100}% accuracy</div>
+            </div>
+            <p>
+                <strong>${data.input_output_examples[0].input}</strong> <br>
+                ${data.input_output_examples[0].output}
+            </p>
+        </div>
+    </div>
+</div>
+
     `;
 
 
