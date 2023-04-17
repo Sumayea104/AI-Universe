@@ -124,9 +124,12 @@ const showDetails = (id) => {
             showDetailsData(data.data);
         })
         .catch((err) => {
-            console.log(err);
+            console.log("Network Problem: ", err);
+            const modalDetailsContainer = document.getElementById("modal-details");
+            modalDetailsContainer.innerHTML = 'Network Problem. Please try again later.';
         });
 };
+
 
 const showDetailsData = (data) => {
     const modalDetails = document.createElement("div");
@@ -177,8 +180,11 @@ const showDetailsData = (data) => {
 
         </div>
         <p>
-            <strong>${data.input_output_examples[0].input}</strong> <br>
-            ${data.input_output_examples[0].output}
+        ${data.input_output_examples.length > 0 ?
+            `<strong>${data.input_output_examples[0].input}</strong> <br>
+            ${data.input_output_examples[0].output}` :
+            "NO, not yet! Take a break."}
+        
         </p>
     </div>
 </div>
