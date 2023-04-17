@@ -138,7 +138,7 @@ const showDetailsData = (data) => {
             <h1 class="text-2xl font-bold ">${data.description}</h1>
             <div class="flex flex-col md:flex-row  justify-around">
                 <button class="btn btn-primary md:mr-4 my-2 w-full md:w-1/3">
-                ${data.pricing[0].price == 0 ? "Free of cost" : "$" + data.pricing[0].price + " " + data.pricing[0].plan}
+                ${data.pricing[0].price === "0" || data.pricing[0].price === "No cost"? "Free of cost": `${data.pricing[0].price} ${data.pricing[0].plan}`}
                 </button>
                 <button class="btn btn-primary md:mr-4 my-2 w-full md:w-1/3">
                 ${data.pricing[1].price}<br> ${data.pricing[1].plan}
