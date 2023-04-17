@@ -81,7 +81,7 @@ const showAi = (tools) => {
     });
 };
 
-// show loader
+
 
 
 
@@ -138,13 +138,13 @@ const showDetailsData = (data) => {
             <h1 class="text-2xl font-bold ">${data.description}</h1>
             <div class="flex flex-col md:flex-row  justify-around">
                 <button class="btn btn-primary md:mr-4 my-2 w-full md:w-1/3">
-                    ${data.pricing[0].plan}:<br> ${data.pricing[0].price}
+                ${data.pricing[0].price == 0 ? "Free of cost" : "$" + data.pricing[0].price + " " + data.pricing[0].plan}
                 </button>
                 <button class="btn btn-primary md:mr-4 my-2 w-full md:w-1/3">
-                    ${data.pricing[1].plan}:<br> ${data.pricing[1].price}
+                ${data.pricing[1].price}<br> ${data.pricing[1].plan}
                 </button>
                 <button class="btn btn-primary md:mr-4 my-2 w-full md:w-1/3">
-                    ${data.pricing[2].plan}:<br> ${data.pricing[2].price}
+                ${data.pricing[2].price}<br> ${data.pricing[2].plan}
                 </button>
             </div>
             <div class="flex flex-col md:flex-row  my-4 justify-around">
